@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>TOML文档 | 大蜗牛的博客</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
+    <meta name="theme-color" content="#ffffff">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://sealsunrise.github.io/css/main.min.2545a1910010e26a9905276045afab868f812580a1e7482423da6c0c8c214d18.css"/>
+
+    
+    
+    
+
+    
+    
+ 
+    
+    
+</head>
+
+    <body>
+        
+<nav>
+  <header>
+    <div class="site-title">
+        <a href="/">大蜗牛的博客</a>
+    </div>  
+</header>
+  <div class="nav-menu">
+  
+    <a class="color-link nav-link" href="/about/">关于</a>
+  
+    <a class="color-link nav-link" href="/tags/">标签</a>
+  
+    <a class="color-link nav-link" href="/archives/">目录</a>
+  
+  <a class="color-link nav-link" href="https://sealsunrise.github.io/index.xml" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+</div>
+<footer class="footer">
+	<div class="social-icons">
+        
+    <a class="social-icon" href="sealsunrise@gmail.com" target="_blank" rel="noopener" title="Email">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M25.2794292,5.59128519 L14,16.8707144 L2.72057081,5.59128519 C3.06733103,5.30237414 3.51336915,5.12857603 4,5.12857603 L24,5.12857603 C24.4866308,5.12857603 24.932669,5.30237414 25.2794292,5.59128519 Z M25.9956978,6.99633695 C25.998551,7.04004843 26,7.08414302 26,7.12857603 L26,20.871424 C26,21.0798433 25.9681197,21.2808166 25.9089697,21.4697335 L18.7156355,14.2763993 L25.9956978,6.99633695 Z M24.9498374,22.6319215 C24.6672737,22.7846939 24.3437653,22.871424 24,22.871424 L4,22.871424 C3.5268522,22.871424 3.09207889,22.7071233 2.74962118,22.432463 L10.0950247,15.0870594 L13.9848068,18.9768415 L14.1878486,18.7737996 L14.2030419,18.7889929 L17.6549753,15.3370594 L24.9498374,22.6319215 Z M2.00810114,21.0526627 C2.00273908,20.9929669 2,20.9325153 2,20.871424 L2,7.12857603 C2,7.08414302 2.00144896,7.04004843 2.00430222,6.99633695 L9.03436454,14.0263993 L2.00810114,21.0526627 Z"></path>
+        </svg>
+    </a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <a class="social-icon" href="#" target="_blank" rel="noopener" title="GitHub">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M13.9988029,1.32087331 C6.82105037,1.32087331 1,7.14112562 1,14.3212723 C1,20.0649109 4.72454649,24.9370678 9.89038951,26.6560892 C10.5408085,26.7757983 10.7778323,26.374374 10.7778323,26.0296121 C10.7778323,25.7215609 10.7666595,24.9035493 10.760275,23.8189856 C7.14426471,24.6042767 6.38131925,22.0760223 6.38131925,22.0760223 C5.78995672,20.5740732 4.93762853,20.1742451 4.93762853,20.1742451 C3.75729765,19.3682044 5.02701126,19.3841656 5.02701126,19.3841656 C6.33183953,19.4759425 7.01817121,20.7241085 7.01817121,20.7241085 C8.17775254,22.7104801 10.0611744,22.1366749 10.8017741,21.8038838 C10.919887,20.9643246 11.2558703,20.3913175 11.6269683,20.066507 C8.74038491,19.7385043 5.70536235,18.6228163 5.70536235,13.6413251 C5.70536235,12.2223743 6.21213051,11.0611968 7.04370914,10.1530044 C6.90963504,9.82420367 6.46351945,8.50181809 7.17139875,6.71256734 C7.17139875,6.71256734 8.26234691,6.36301702 10.7459099,8.04532771 C11.78259,7.75642995 12.8950858,7.61277914 14.000399,7.60719272 C15.1049142,7.61277914 16.2166119,7.75642995 17.2548881,8.04532771 C19.736855,6.36301702 20.8262071,6.71256734 20.8262071,6.71256734 C21.5356825,8.50181809 21.0895669,9.82420367 20.9562909,10.1530044 C21.7894656,11.0611968 22.2922435,12.2223743 22.2922435,13.6413251 C22.2922435,18.6355852 19.2524325,19.734514 16.3570705,20.0561322 C16.8231376,20.4575564 17.2389269,21.2508282 17.2389269,22.4638795 C17.2389269,24.2012564 17.2229657,25.603448 17.2229657,26.0296121 C17.2229657,26.3775663 17.4575954,26.7821827 18.116793,26.6552912 C23.2786458,24.9322794 27,20.0633148 27,14.3212723 C27,7.14112562 21.1789496,1.32087331 13.9988029,1.32087331"></path>
+        </svg>
+    </a>
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	
+	<p><a href="https://gohugo.io" target="_blank" rel="noopener">使用Hugo创建</a></p>
+
+	<script src="https://sealsunrise.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+</nav>
+        <div id="content" class="content-container">
+        
+<h1 class="post-title">TOML文档</h1>
+    
+    <time>2019-12-03</time>
+    
+    <div>
+        <p>
+        <p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</p>
+<h1 id="toml">TOML</h1>
+<p>Tom&rsquo;s Obvious, Minimal Language.</p>
+<p>By Tom Preston-Werner, Pradyun Gedam, et al.</p>
+<p>Latest tagged version: <a href="https://github.com/mojombo/toml/blob/master/versions/en/toml-v0.5.0.md">v0.5.0</a>.</p>
+<p>NOTE: The <code>master</code> branch of this repository tracks the very latest development and may contain features and changes that do not exist on any released version. To find the spec for a specific version, look in the <code>versions</code> subdirectory.</p>
+<p>As of version 0.5.0, TOML should be considered extremely stable. The goal is for version 1.0.0 to be backwards compatible (as much as humanly possible) with version 0.5.0. All implementations are strongly encouraged to become 0.5.0 compatible so that the transition to 1.0.0 will be simple when that happens.</p>
+<h2 id="objectives">Objectives</h2>
+<p>TOML aims to be a minimal configuration file format that&rsquo;s easy to read due to obvious semantics. TOML is designed to map unambiguously to a hash table. TOML should be easy to parse into data structures in a wide variety of languages.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="https://github.com/toml-lang/toml#user-content-example">Example</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-spec">Spec</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-comment">Comment</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-keyvalue-pair">Key/Value Pair</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-keys">Keys</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-string">String</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-integer">Integer</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-float">Float</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-boolean">Boolean</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-offset-date-time">Offset Date-Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-date-time">Local Date-Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-date">Local Date</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-time">Local Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-array">Array</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-table">Table</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-inline-table">Inline Table</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-array-of-tables">Array of Tables</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-filename-extension">Filename Extension</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-mime-type">MIME Type</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-comparison-with-other-formats">Comparison with Other Formats</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-get-involved">Get Involved</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-wiki">Wiki</a></li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code># This is a TOML document.
+
+title = &quot;TOML Example&quot;
+
+[owner]
+name = &quot;Tom Preston-Werner&quot;
+dob = 1979-05-27T07:32:00-08:00 # First class dates
+
+[database]
+server = &quot;192.168.1.1&quot;
+ports = [ 8001, 8001, 8002 ]
+connection_max = 5000
+enabled = true
+
+[servers]
+
+  # Indentation (tabs and/or spaces) is allowed but not required
+  [servers.alpha]
+  ip = &quot;10.0.0.1&quot;
+  dc = &quot;eqdc10&quot;
+
+  [servers.beta]
+  ip = &quot;10.0.0.2&quot;
+  dc = &quot;eqdc10&quot;
+
+[clients]
+data = [ [&quot;gamma&quot;, &quot;delta&quot;], [1, 2] ]
+
+# Line breaks are OK when inside arrays
+hosts = [
+  &quot;alpha&quot;,
+  &quot;omega&quot;
+]
+</code></pre><h2 id="spec">Spec</h2>
+<ul>
+<li>TOML is case sensitive.</li>
+<li>A TOML file must be a valid UTF-8 encoded Unicode document.</li>
+<li>Whitespace means tab (0x09) or space (0x20).</li>
+<li>Newline means LF (0x0A) or CRLF (0x0D 0x0A).</li>
+</ul>
+<h2 id="comment">Comment</h2>
+<p>A hash symbol marks the rest of the line as a comment, except when inside a string.</p>
+<pre><code># This is a full-line comment
+key = &quot;value&quot;  # This is a comment at the end of a line
+another = &quot;# This is not a comment&quot;
+</code></pre><p>Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F) are not permitted in comments.</p>
+<h2 id="keyvalue-pair">Key/Value Pair</h2>
+<p>The primary building block of a TOML document is the key/value pair.</p>
+<p>Keys are on the left of the equals sign and values are on the right. Whitespace is ignored around key names and values. The key, equals sign, and value must be on the same line (though some values can be broken over multiple lines).</p>
+<pre><code>key = &quot;value&quot;
+</code></pre><p>Values must have one of the following types.</p>
+<ul>
+<li><a href="https://github.com/toml-lang/toml#user-content-string">String</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-integer">Integer</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-float">Float</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-boolean">Boolean</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-offset-date-time">Offset Date-Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-date-time">Local Date-Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-date">Local Date</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-local-time">Local Time</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-array">Array</a></li>
+<li><a href="https://github.com/toml-lang/toml#user-content-inline-table">Inline Table</a></li>
+</ul>
+<p>Unspecified values are invalid.</p>
+<pre><code>key = # INVALID
+</code></pre><p>There must be a newline after a key/value pair. (See <a href="https://github.com/toml-lang/toml#user-content-inline-table">Inline Table</a> for exceptions.)</p>
+<pre><code>first = &quot;Tom&quot; last = &quot;Preston-Werner&quot; # INVALID
+</code></pre><h2 id="keys">Keys</h2>
+<p>A key may be either bare, quoted or dotted.</p>
+<p><strong>Bare keys</strong> may only contain ASCII letters, ASCII digits, underscores, and dashes (<code>A-Za-z0-9_-</code>). Note that bare keys are allowed to be composed of only ASCII digits, e.g. <code>1234</code>, but are always interpreted as strings.</p>
+<pre><code>key = &quot;value&quot;
+bare_key = &quot;value&quot;
+bare-key = &quot;value&quot;
+1234 = &quot;value&quot;
+</code></pre><p><strong>Quoted keys</strong> follow the exact same rules as either basic strings or literal strings and allow you to use a much broader set of key names. Best practice is to use bare keys except when absolutely necessary.</p>
+<pre><code>&quot;127.0.0.1&quot; = &quot;value&quot;
+&quot;character encoding&quot; = &quot;value&quot;
+&quot;ʎǝʞ&quot; = &quot;value&quot;
+'key2' = &quot;value&quot;
+'quoted &quot;value&quot;' = &quot;value&quot;
+</code></pre><p>A bare key must be non-empty, but an empty quoted key is allowed (though discouraged).</p>
+<pre><code>= &quot;no key name&quot;  # INVALID
+&quot;&quot; = &quot;blank&quot;     # VALID but discouraged
+'' = 'blank'     # VALID but discouraged
+</code></pre><p><strong>Dotted keys</strong> are a sequence of bare or quoted keys joined with a dot. This allows for grouping similar properties together:</p>
+<pre><code>name = &quot;Orange&quot;
+physical.color = &quot;orange&quot;
+physical.shape = &quot;round&quot;
+site.&quot;google.com&quot; = true
+</code></pre><p>In JSON land, that would give you the following structure:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;Orange&quot;,
+  &quot;physical&quot;: {
+    &quot;color&quot;: &quot;orange&quot;,
+    &quot;shape&quot;: &quot;round&quot;
+  },
+  &quot;site&quot;: {
+    &quot;google.com&quot;: true
+  }
+}
+</code></pre><p>Whitespace around dot-separated parts is ignored, however, best practice is to not use any extraneous whitespace.</p>
+<p>Defining a key multiple times is invalid.</p>
+<pre><code># DO NOT DO THIS
+name = &quot;Tom&quot;
+name = &quot;Pradyun&quot;
+</code></pre><p>Since bare keys are allowed to compose of only ASCII integers, it is possible to write dotted keys that look like floats but are 2-part dotted keys. Don&rsquo;t do this unless you have a good reason to (you probably don&rsquo;t).</p>
+<pre><code>3.14159 = &quot;pi&quot;
+</code></pre><p>The above TOML maps to the following JSON.</p>
+<pre><code>{ &quot;3&quot;: { &quot;14159&quot;: &quot;pi&quot; } }
+</code></pre><p>As long as a key hasn&rsquo;t been directly defined, you may still write to it and to names within it.</p>
+<pre><code># This makes the key &quot;fruit&quot; into a table.
+fruit.apple.smooth = true
+
+# So then you can add to the table &quot;fruit&quot; like so:
+fruit.orange = 2
+# THE FOLLOWING IS INVALID
+
+# This defines the value of fruit.apple to be an integer.
+fruit.apple = 1
+
+# But then this treats fruit.apple like it's a table.
+# You can't turn an integer into a table.
+fruit.apple.smooth = true
+</code></pre><p>Defining dotted keys out-of-order is discouraged.</p>
+<pre><code># VALID BUT DISCOURAGED
+
+apple.type = &quot;fruit&quot;
+orange.type = &quot;fruit&quot;
+
+apple.skin = &quot;thin&quot;
+orange.skin = &quot;thick&quot;
+
+apple.color = &quot;red&quot;
+orange.color = &quot;orange&quot;
+# RECOMMENDED
+
+apple.type = &quot;fruit&quot;
+apple.skin = &quot;thin&quot;
+apple.color = &quot;red&quot;
+
+orange.type = &quot;fruit&quot;
+orange.skin = &quot;thick&quot;
+orange.color = &quot;orange&quot;
+</code></pre><h2 id="string">String</h2>
+<p>There are four ways to express strings: basic, multi-line basic, literal, and multi-line literal. All strings must contain only valid UTF-8 characters.</p>
+<p><strong>Basic strings</strong> are surrounded by quotation marks. Any Unicode character may be used except those that must be escaped: quotation mark, backslash, and the control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).</p>
+<pre><code>str = &quot;I'm a string. \&quot;You can quote me\&quot;. Name\tJos\u00E9\nLocation\tSF.&quot;
+</code></pre><p>For convenience, some popular characters have a compact escape sequence.</p>
+<pre><code>\b         - backspace       (U+0008)
+\t         - tab             (U+0009)
+\n         - linefeed        (U+000A)
+\f         - form feed       (U+000C)
+\r         - carriage return (U+000D)
+\&quot;         - quote           (U+0022)
+\\         - backslash       (U+005C)
+\uXXXX     - unicode         (U+XXXX)
+\UXXXXXXXX - unicode         (U+XXXXXXXX)
+</code></pre><p>Any Unicode character may be escaped with the <code>\uXXXX</code> or <code>\UXXXXXXXX</code> forms. The escape codes must be valid Unicode <a href="http://unicode.org/glossary/#unicode_scalar_value">scalar values</a>.</p>
+<p>All other escape sequences not listed above are reserved and, if used, TOML should produce an error.</p>
+<p>Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. TOML makes this easy.</p>
+<p><strong>Multi-line basic strings</strong> are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.</p>
+<pre><code>str1 = &quot;&quot;&quot;
+Roses are red
+Violets are blue&quot;&quot;&quot;
+</code></pre><p>TOML parsers should feel free to normalize newline to whatever makes sense for their platform.</p>
+<pre><code># On a Unix system, the above multi-line string will most likely be the same as:
+str2 = &quot;Roses are red\nViolets are blue&quot;
+
+# On a Windows system, it will most likely be equivalent to:
+str3 = &quot;Roses are red\r\nViolets are blue&quot;
+</code></pre><p>For writing long strings without introducing extraneous whitespace, use a &ldquo;line ending backslash&rdquo;. When the last non-whitespace character on a line is a <code>\</code>, it will be trimmed along with all whitespace (including newlines) up to the next non-whitespace character or closing delimiter. All of the escape sequences that are valid for basic strings are also valid for multi-line basic strings.</p>
+<pre><code># The following strings are byte-for-byte equivalent:
+str1 = &quot;The quick brown fox jumps over the lazy dog.&quot;
+
+str2 = &quot;&quot;&quot;
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog.&quot;&quot;&quot;
+
+str3 = &quot;&quot;&quot;\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       &quot;&quot;&quot;
+</code></pre><p>Any Unicode character may be used except those that must be escaped: backslash and the control characters other than tab, line feed, and carriage return (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).</p>
+<p>You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.</p>
+<pre><code>str4 = &quot;&quot;&quot;Here are two quotation marks: &quot;&quot;. Simple enough.&quot;&quot;&quot;
+# str5 = &quot;&quot;&quot;Here are three quotation marks: &quot;&quot;&quot;.&quot;&quot;&quot;  # INVALID
+str5 = &quot;&quot;&quot;Here are three quotation marks: &quot;&quot;\&quot;.&quot;&quot;&quot;
+str6 = &quot;&quot;&quot;Here are fifteen quotation marks: &quot;&quot;\&quot;&quot;&quot;\&quot;&quot;&quot;\&quot;&quot;&quot;\&quot;&quot;&quot;\&quot;.&quot;&quot;&quot;
+
+# &quot;This,&quot; she said, &quot;is just a pointless statement.&quot;
+str7 = &quot;&quot;&quot;&quot;This,&quot; she said, &quot;is just a pointless statement.&quot;&quot;&quot;&quot;
+</code></pre><p>If you&rsquo;re a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error prone. To help, TOML supports literal strings which do not allow escaping at all.</p>
+<p><strong>Literal strings</strong> are surrounded by single quotes. Like basic strings, they must appear on a single line:</p>
+<pre><code># What you see is what you get.
+winpath  = 'C:\Users\nodejs\templates'
+winpath2 = '\\ServerX\admin$\system32\'
+quoted   = 'Tom &quot;Dubs&quot; Preston-Werner'
+regex    = '&lt;\i\c*\s*&gt;'
+</code></pre><p>Since there is no escaping, there is no way to write a single quote inside a literal string enclosed by single quotes. Luckily, TOML supports a multi-line version of literal strings that solves this problem.</p>
+<p><strong>Multi-line literal strings</strong> are surrounded by three single quotes on each side and allow newlines. Like literal strings, there is no escaping whatsoever. A newline immediately following the opening delimiter will be trimmed. All other content between the delimiters is interpreted as-is without modification.</p>
+<pre><code>regex2 = '''I [dw]on't need \d{2} apples'''
+lines  = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+</code></pre><p>You can write 1 or 2 single quotes anywhere within a multi-line literal string, but sequences of three or more single quotes are not permitted.</p>
+<pre><code>quot15 = '''Here are fifteen quotation marks: &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;'''
+
+# apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
+apos15 = &quot;Here are fifteen apostrophes: '''''''''''''''&quot;
+
+# 'That's still pointless', she said.
+str = ''''That's still pointless', she said.'''
+</code></pre><p>Control characters other than tab are not permitted in a literal string. Thus, for binary data it is recommended that you use Base64 or another suitable ASCII or UTF-8 encoding. The handling of that encoding will be application specific.</p>
+<h2 id="integer">Integer</h2>
+<p>Integers are whole numbers. Positive numbers may be prefixed with a plus sign. Negative numbers are prefixed with a minus sign.</p>
+<pre><code>int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17
+</code></pre><p>For large numbers, you may use underscores between digits to enhance readability. Each underscore must be surrounded by at least one digit on each side.</p>
+<pre><code>int5 = 1_000
+int6 = 5_349_221
+int7 = 1_2_3_4_5     # VALID but discouraged
+</code></pre><p>Leading zeros are not allowed. Integer values <code>-0</code> and <code>+0</code> are valid and identical to an unprefixed zero.</p>
+<p>Non-negative integer values may also be expressed in hexadecimal, octal, or binary. In these formats, leading <code>+</code> is not allowed and leading zeros are allowed (after the prefix). Hex values are case insensitive. Underscores are allowed between digits (but not between the prefix and the value).</p>
+<pre><code># hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+
+# binary with prefix `0b`
+bin1 = 0b11010110
+</code></pre><p>64 bit (signed long) range expected (−9,223,372,036,854,775,808 to 9,223,372,036,854,775,807).</p>
+<h2 id="float">Float</h2>
+<p>Floats should be implemented as IEEE 754 binary64 values.</p>
+<p>A float consists of an integer part (which follows the same rules as decimal integer values) followed by a fractional part and/or an exponent part. If both a fractional part and exponent part are present, the fractional part must precede the exponent part.</p>
+<pre><code># fractional
+flt1 = +1.0
+flt2 = 3.1415
+flt3 = -0.01
+
+# exponent
+flt4 = 5e+22
+flt5 = 1e06
+flt6 = -2E-2
+
+# both
+flt7 = 6.626e-34
+</code></pre><p>A fractional part is a decimal point followed by one or more digits.</p>
+<p>An exponent part is an E (upper or lower case) followed by an integer part (which follows the same rules as decimal integer values but may include leading zeros).</p>
+<p>Similar to integers, you may use underscores to enhance readability. Each underscore must be surrounded by at least one digit.</p>
+<pre><code>flt8 = 224_617.445_991_228
+</code></pre><p>Float values <code>-0.0</code> and <code>+0.0</code> are valid and should map according to IEEE 754.</p>
+<p>Special float values can also be expressed. They are always lowercase.</p>
+<pre><code># infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation specific
+</code></pre><h2 id="boolean">Boolean</h2>
+<p>Booleans are just the tokens you&rsquo;re used to. Always lowercase.</p>
+<pre><code>bool1 = true
+bool2 = false
+</code></pre><h2 id="offset-date-time">Offset Date-Time</h2>
+<p>To unambiguously represent a specific instant in time, you may use an <a href="http://tools.ietf.org/html/rfc3339">RFC 3339</a> formatted date-time with offset.</p>
+<pre><code>odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
+</code></pre><p>For the sake of readability, you may replace the T delimiter between date and time with a space (as permitted by RFC 3339 section 5.6).</p>
+<pre><code>odt4 = 1979-05-27 07:32:00Z
+</code></pre><p>The precision of fractional seconds is implementation specific, but at least millisecond precision is expected. If the value contains greater precision than the implementation can support, the additional precision must be truncated, not rounded.</p>
+<h2 id="local-date-time">Local Date-Time</h2>
+<p>If you omit the offset from an <a href="http://tools.ietf.org/html/rfc3339">RFC 3339</a> formatted date-time, it will represent the given date-time without any relation to an offset or timezone. It cannot be converted to an instant in time without additional information. Conversion to an instant, if required, is implementation specific.</p>
+<pre><code>ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
+</code></pre><p>The precision of fractional seconds is implementation specific, but at least millisecond precision is expected. If the value contains greater precision than the implementation can support, the additional precision must be truncated, not rounded.</p>
+<h2 id="local-date">Local Date</h2>
+<p>If you include only the date portion of an <a href="http://tools.ietf.org/html/rfc3339">RFC 3339</a> formatted date-time, it will represent that entire day without any relation to an offset or timezone.</p>
+<pre><code>ld1 = 1979-05-27
+</code></pre><h2 id="local-time">Local Time</h2>
+<p>If you include only the time portion of an <a href="http://tools.ietf.org/html/rfc3339">RFC 3339</a> formatted date-time, it will represent that time of day without any relation to a specific day or any offset or timezone.</p>
+<pre><code>lt1 = 07:32:00
+lt2 = 00:32:00.999999
+</code></pre><p>The precision of fractional seconds is implementation specific, but at least millisecond precision is expected. If the value contains greater precision than the implementation can support, the additional precision must be truncated, not rounded.</p>
+<h2 id="array">Array</h2>
+<p>Arrays are square brackets with values inside. Whitespace is ignored. Elements are separated by commas. Arrays can contain values of the same data types as allowed in key/value pairs. Values of different types may be mixed.</p>
+<pre><code>integers = [ 1, 2, 3 ]
+colors = [ &quot;red&quot;, &quot;yellow&quot;, &quot;green&quot; ]
+nested_array_of_int = [ [ 1, 2 ], [3, 4, 5] ]
+nested_mixed_array = [ [ 1, 2 ], [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] ]
+string_array = [ &quot;all&quot;, 'strings', &quot;&quot;&quot;are the same&quot;&quot;&quot;, '''type''' ]
+
+# Mixed-type arrays are allowed
+numbers = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+contributors = [
+  &quot;Foo Bar &lt;foo@example.com&gt;&quot;,
+  { name = &quot;Baz Qux&quot;, email = &quot;bazqux@example.com&quot;, url = &quot;https://example.com/bazqux&quot; }
+]
+</code></pre><p>Arrays can span multiple lines. A terminating comma (also called trailing comma) is ok after the last value of the array. There can be an arbitrary number of newlines and comments before a value and before the closing bracket.</p>
+<pre><code>integers2 = [
+  1, 2, 3
+]
+
+integers3 = [
+  1,
+  2, # this is ok
+]
+</code></pre><h2 id="table">Table</h2>
+<p>Tables (also known as hash tables or dictionaries) are collections of key/value pairs. They appear in square brackets on a line by themselves. You can tell them apart from arrays because arrays are only ever values.</p>
+<pre><code>[table]
+</code></pre><p>Under that, and until the next table or EOF are the key/values of that table. Key/value pairs within tables are not guaranteed to be in any specific order.</p>
+<pre><code>[table-1]
+key1 = &quot;some string&quot;
+key2 = 123
+
+[table-2]
+key1 = &quot;another string&quot;
+key2 = 456
+</code></pre><p>Naming rules for tables are the same as for keys (see definition of Keys above).</p>
+<pre><code>[dog.&quot;tater.man&quot;]
+type.name = &quot;pug&quot;
+</code></pre><p>In JSON land, that would give you the following structure:</p>
+<pre><code>{ &quot;dog&quot;: { &quot;tater.man&quot;: { &quot;type&quot;: { &quot;name&quot;: &quot;pug&quot; } } } }
+</code></pre><p>Whitespace around the key is ignored, however, best practice is to not use any extraneous whitespace.</p>
+<pre><code>[a.b.c]            # this is best practice
+[ d.e.f ]          # same as [d.e.f]
+[ g .  h  . i ]    # same as [g.h.i]
+[ j . &quot;ʞ&quot; . 'l' ]  # same as [j.&quot;ʞ&quot;.'l']
+</code></pre><p>You don&rsquo;t need to specify all the super-tables if you don&rsquo;t want to. TOML knows how to do it for you.</p>
+<pre><code># [x] you
+# [x.y] don't
+# [x.y.z] need these
+[x.y.z.w] # for this to work
+
+[x] # defining a super-table afterwards is ok
+</code></pre><p>Empty tables are allowed and simply have no key/value pairs within them.</p>
+<p>Like keys, you cannot define any table more than once. Doing so is invalid.</p>
+<pre><code># DO NOT DO THIS
+
+[fruit]
+apple = &quot;red&quot;
+
+[fruit]
+orange = &quot;orange&quot;
+# DO NOT DO THIS EITHER
+
+[fruit]
+apple = &quot;red&quot;
+
+[fruit.apple]
+texture = &quot;smooth&quot;
+</code></pre><p>Defining tables out-of-order is discouraged.</p>
+<pre><code># VALID BUT DISCOURAGED
+[fruit.apple]
+[animal]
+[fruit.orange]
+# RECOMMENDED
+[fruit.apple]
+[fruit.orange]
+[animal]
+</code></pre><p>Dotted keys define everything to the left of each dot as a table. Since tables cannot be defined more than once, redefining such tables using a <code>[table]</code> header is not allowed. Likewise, using dotted keys to redefine tables already defined in <code>[table]</code> form is not allowed.</p>
+<p>The <code>[table]</code> form can, however, be used to define sub-tables within tables defined via dotted keys.</p>
+<pre><code>[fruit]
+apple.color = &quot;red&quot;
+apple.taste.sweet = true
+
+# [fruit.apple]  # INVALID
+# [fruit.apple.taste]  # INVALID
+
+[fruit.apple.texture]  # you can add sub-tables
+smooth = true
+</code></pre><h2 id="inline-table">Inline Table</h2>
+<p>Inline tables provide a more compact syntax for expressing tables. They are especially useful for grouped data that can otherwise quickly become verbose. Inline tables are enclosed in curly braces <code>{</code> and <code>}</code>. Within the braces, zero or more comma separated key/value pairs may appear. Key/value pairs take the same form as key/value pairs in standard tables. All value types are allowed, including inline tables.</p>
+<p>Inline tables are intended to appear on a single line. A terminating comma (also called trailing comma) is not permitted after the last key/value pair in an inline table. No newlines are allowed between the curly braces unless they are valid within a value. Even so, it is strongly discouraged to break an inline table onto multiples lines. If you find yourself gripped with this desire, it means you should be using standard tables.</p>
+<pre><code>name = { first = &quot;Tom&quot;, last = &quot;Preston-Werner&quot; }
+point = { x = 1, y = 2 }
+animal = { type.name = &quot;pug&quot; }
+</code></pre><p>The inline tables above are identical to the following standard table definitions:</p>
+<pre><code>[name]
+first = &quot;Tom&quot;
+last = &quot;Preston-Werner&quot;
+
+[point]
+x = 1
+y = 2
+
+[animal]
+type.name = &quot;pug&quot;
+</code></pre><p>Inline tables fully define the keys and sub-tables within them. New keys and sub-tables cannot be added to them.</p>
+<pre><code>[product]
+type = { name = &quot;Nail&quot; }
+# type.edible = false  # INVALID
+</code></pre><p>Similarly, inline tables can not be used to add keys or sub-tables to an already-defined table.</p>
+<pre><code>[product]
+type.name = &quot;Nail&quot;
+# type = { edible = false }  # INVALID
+</code></pre><h2 id="array-of-tables">Array of Tables</h2>
+<p>The last type that has not yet been expressed is an array of tables. These can be expressed by using a table name in double brackets. Under that, and until the next table or EOF are the key/values of that table. Each table with the same double bracketed name will be an element in the array of tables. The tables are inserted in the order encountered. A double bracketed table without any key/value pairs will be considered an empty table.</p>
+<pre><code>[[products]]
+name = &quot;Hammer&quot;
+sku = 738594937
+
+[[products]]
+
+[[products]]
+name = &quot;Nail&quot;
+sku = 284758393
+
+color = &quot;gray&quot;
+</code></pre><p>In JSON land, that would give you the following structure.</p>
+<pre><code>{
+  &quot;products&quot;: [
+    { &quot;name&quot;: &quot;Hammer&quot;, &quot;sku&quot;: 738594937 },
+    { },
+    { &quot;name&quot;: &quot;Nail&quot;, &quot;sku&quot;: 284758393, &quot;color&quot;: &quot;gray&quot; }
+  ]
+}
+</code></pre><p>You can create nested arrays of tables as well. Just use the same double bracket syntax on sub-tables. Each double-bracketed sub-table will belong to the most recently defined table element. Normal sub-tables (not arrays) likewise belong to the most recently defined table element.</p>
+<pre><code>[[fruit]]
+  name = &quot;apple&quot;
+
+  [fruit.physical]  # subtable
+    color = &quot;red&quot;
+    shape = &quot;round&quot;
+
+  [[fruit.variety]]  # nested array of tables
+    name = &quot;red delicious&quot;
+
+  [[fruit.variety]]
+    name = &quot;granny smith&quot;
+
+[[fruit]]
+  name = &quot;banana&quot;
+
+  [[fruit.variety]]
+    name = &quot;plantain&quot;
+</code></pre><p>The above TOML maps to the following JSON.</p>
+<pre><code>{
+  &quot;fruit&quot;: [
+    {
+      &quot;name&quot;: &quot;apple&quot;,
+      &quot;physical&quot;: {
+        &quot;color&quot;: &quot;red&quot;,
+        &quot;shape&quot;: &quot;round&quot;
+      },
+      &quot;variety&quot;: [
+        { &quot;name&quot;: &quot;red delicious&quot; },
+        { &quot;name&quot;: &quot;granny smith&quot; }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;banana&quot;,
+      &quot;variety&quot;: [
+        { &quot;name&quot;: &quot;plantain&quot; }
+      ]
+    }
+  ]
+}
+</code></pre><p>If the parent of a table or array of tables is an array element, that element must already have been defined before the child can be defined. Attempts to reverse that ordering must produce an error at parse time.</p>
+<pre><code># INVALID TOML DOC
+[fruit.physical]  # subtable, but to which parent element should it belong?
+  color = &quot;red&quot;
+  shape = &quot;round&quot;
+
+[[fruit]]  # parser must throw an error upon discovering that &quot;fruit&quot; is
+           # an array rather than a table
+  name = &quot;apple&quot;
+</code></pre><p>Attempting to append to a statically defined array, even if that array is empty or of compatible type, must produce an error at parse time.</p>
+<pre><code># INVALID TOML DOC
+fruit = []
+
+[[fruit]] # Not allowed
+</code></pre><p>Attempting to define a normal table with the same name as an already established array must produce an error at parse time. Attempting to redefine a normal table as an array must likewise produce a parse-time error.</p>
+<pre><code># INVALID TOML DOC
+[[fruit]]
+  name = &quot;apple&quot;
+
+  [[fruit.variety]]
+    name = &quot;red delicious&quot;
+
+  # INVALID: This table conflicts with the previous array of tables
+  [fruit.variety]
+    name = &quot;granny smith&quot;
+
+  [fruit.physical]
+    color = &quot;red&quot;
+    shape = &quot;round&quot;
+
+  # INVALID: This array of tables conflicts with the previous table
+  [[fruit.physical]]
+    color = &quot;green&quot;
+</code></pre><p>You may also use inline tables where appropriate:</p>
+<pre><code>points = [ { x = 1, y = 2, z = 3 },
+           { x = 7, y = 8, z = 9 },
+           { x = 2, y = 4, z = 8 } ]
+</code></pre><h2 id="filename-extension">Filename Extension</h2>
+<p>TOML files should use the extension <code>.toml</code>.</p>
+<h2 id="mime-type">MIME Type</h2>
+<p>When transferring TOML files over the internet, the appropriate MIME type is <code>application/toml</code>.</p>
+<h2 id="comparison-with-other-formats">Comparison with Other Formats</h2>
+<p>TOML shares traits with other file formats used for application configuration and data serialization, such as YAML and JSON. TOML and JSON both are simple and use ubiquitous data types, making them easy to code for or parse with machines. TOML and YAML both emphasize human readability features, like comments that make it easier to understand the purpose of a given line. TOML differs in combining these, allowing comments (unlike JSON) but preserving simplicity (unlike YAML).</p>
+<p>Because TOML is explicitly intended as a configuration file format, parsing it is easy, but it is not intended for serializing arbitrary data structures. TOML always has a hash table at the top level of the file, which can easily have data nested inside its keys, but it doesn&rsquo;t permit top-level arrays or floats, so it cannot directly serialize some data. There is also no standard identifying the start or end of a TOML file, which can complicate sending it through a stream. These details must be negotiated on the application layer.</p>
+<p>INI files are frequently compared to TOML for their similarities in syntax and use as configuration files. However, there is no standardized format for INI and they do not gracefully handle more than one or two levels of nesting.</p>
+<p>Further reading:</p>
+<ul>
+<li>YAML spec: <a href="https://yaml.org/spec/1.2/spec.html">https://yaml.org/spec/1.2/spec.html</a></li>
+<li>JSON spec: <a href="https://tools.ietf.org/html/rfc8259">https://tools.ietf.org/html/rfc8259</a></li>
+<li>Wikipedia on INI files: <a href="https://en.wikipedia.org/wiki/INI_file">https://en.wikipedia.org/wiki/INI_file</a></li>
+</ul>
+<h2 id="get-involved">Get Involved</h2>
+<p>Documentation, bug reports, pull requests, and all other contributions are welcome!</p>
+<h2 id="wiki">Wiki</h2>
+<p>We have an <a href="https://github.com/toml-lang/toml/wiki">Official TOML Wiki</a> that catalogs the following:</p>
+<ul>
+<li>Projects using TOML</li>
+<li>Implementations</li>
+<li>Validators</li>
+<li>Language agnostic test suite for TOML decoders and encoders</li>
+<li>Editor support</li>
+<li>Encoders</li>
+<li>Converters</li>
+</ul>
+<p>Please take a look if you&rsquo;d like to view or add to that list. Thanks for being a part of the TOML community!</p>
+
+        </p>
+    </div>
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/toml">#toml</a>
+        
+      
+    </div>
+
+
+        
+
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
+<script type="text/javascript" src="/js/katex.min.js"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+
+        </div>
+        <footer class="footer-mobile">
+	<div class="social-icons">
+        
+    <a class="social-icon" href="sealsunrise@gmail.com" target="_blank" rel="noopener" title="Email">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M25.2794292,5.59128519 L14,16.8707144 L2.72057081,5.59128519 C3.06733103,5.30237414 3.51336915,5.12857603 4,5.12857603 L24,5.12857603 C24.4866308,5.12857603 24.932669,5.30237414 25.2794292,5.59128519 Z M25.9956978,6.99633695 C25.998551,7.04004843 26,7.08414302 26,7.12857603 L26,20.871424 C26,21.0798433 25.9681197,21.2808166 25.9089697,21.4697335 L18.7156355,14.2763993 L25.9956978,6.99633695 Z M24.9498374,22.6319215 C24.6672737,22.7846939 24.3437653,22.871424 24,22.871424 L4,22.871424 C3.5268522,22.871424 3.09207889,22.7071233 2.74962118,22.432463 L10.0950247,15.0870594 L13.9848068,18.9768415 L14.1878486,18.7737996 L14.2030419,18.7889929 L17.6549753,15.3370594 L24.9498374,22.6319215 Z M2.00810114,21.0526627 C2.00273908,20.9929669 2,20.9325153 2,20.871424 L2,7.12857603 C2,7.08414302 2.00144896,7.04004843 2.00430222,6.99633695 L9.03436454,14.0263993 L2.00810114,21.0526627 Z"></path>
+        </svg>
+    </a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <a class="social-icon" href="#" target="_blank" rel="noopener" title="GitHub">
+        <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" fill="#ABABAB" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+            <path d="M13.9988029,1.32087331 C6.82105037,1.32087331 1,7.14112562 1,14.3212723 C1,20.0649109 4.72454649,24.9370678 9.89038951,26.6560892 C10.5408085,26.7757983 10.7778323,26.374374 10.7778323,26.0296121 C10.7778323,25.7215609 10.7666595,24.9035493 10.760275,23.8189856 C7.14426471,24.6042767 6.38131925,22.0760223 6.38131925,22.0760223 C5.78995672,20.5740732 4.93762853,20.1742451 4.93762853,20.1742451 C3.75729765,19.3682044 5.02701126,19.3841656 5.02701126,19.3841656 C6.33183953,19.4759425 7.01817121,20.7241085 7.01817121,20.7241085 C8.17775254,22.7104801 10.0611744,22.1366749 10.8017741,21.8038838 C10.919887,20.9643246 11.2558703,20.3913175 11.6269683,20.066507 C8.74038491,19.7385043 5.70536235,18.6228163 5.70536235,13.6413251 C5.70536235,12.2223743 6.21213051,11.0611968 7.04370914,10.1530044 C6.90963504,9.82420367 6.46351945,8.50181809 7.17139875,6.71256734 C7.17139875,6.71256734 8.26234691,6.36301702 10.7459099,8.04532771 C11.78259,7.75642995 12.8950858,7.61277914 14.000399,7.60719272 C15.1049142,7.61277914 16.2166119,7.75642995 17.2548881,8.04532771 C19.736855,6.36301702 20.8262071,6.71256734 20.8262071,6.71256734 C21.5356825,8.50181809 21.0895669,9.82420367 20.9562909,10.1530044 C21.7894656,11.0611968 22.2922435,12.2223743 22.2922435,13.6413251 C22.2922435,18.6355852 19.2524325,19.734514 16.3570705,20.0561322 C16.8231376,20.4575564 17.2389269,21.2508282 17.2389269,22.4638795 C17.2389269,24.2012564 17.2229657,25.603448 17.2229657,26.0296121 C17.2229657,26.3775663 17.4575954,26.7821827 18.116793,26.6552912 C23.2786458,24.9322794 27,20.0633148 27,14.3212723 C27,7.14112562 21.1789496,1.32087331 13.9988029,1.32087331"></path>
+        </svg>
+    </a>
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+
+	<div class="footer-mobile-links">
+		
+		<span class="divider-bar">|</span>
+		<p><a href="https://gohugo.io" target="_blank" rel="noopener">使用Hugo创建</a></p>
+	</div>
+
+	<script src="https://sealsunrise.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww="></script>
+</footer>
+    </body>
+</html>

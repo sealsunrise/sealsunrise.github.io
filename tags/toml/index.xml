@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>toml on 大蜗牛的博客</title>
+    <link>https://sealsunrise.github.io/tags/toml/</link>
+    <description>Recent content in toml on 大蜗牛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sealsunrise.github.io/tags/toml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TOML文档</title>
+      <link>https://sealsunrise.github.io/posts/1/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sealsunrise.github.io/posts/1/</guid>
+      <description>&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;
+TOML Tom&amp;rsquo;s Obvious, Minimal Language.
+By Tom Preston-Werner, Pradyun Gedam, et al.</description>
+    </item>
+    
+  </channel>
+</rss>
